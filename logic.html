@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logic</title>
+    <style>
+        .card{
+            width: 250px;
+            margin: auto;
+        }
+        img{
+            width: 200px;
+        }
+        button{
+            padding: 5px;
+            margin: 10px;
+            margin-top: 20px;
+        }
+        .detectedArea{
+            width: 200px;
+            height: 100px;
+            border: 2px solid black;
+        }
+        p{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="./off.gif" alt="OFF" id="bulb">
+        <div class="card-body">
+            <button onclick="lightOn()">Switch ON</button>
+            <button onclick="lightOff()">Switch OFF</button>
+            <hr>
+            <button onclick="toggleSwitch()">Touch Button</button>
+            <hr>
+            <button onclick="toggleSwitch()">Switch 1</button>
+            <button onclick="toggleSwitch()">Switch 2</button>
+        </div>
+        <hr>
+        <br>
+        <div class="detectedArea">
+            <p>Deteced Area</p>
+        </div>
+    </div>
+    <script>
+        let lightBulb = document.getElementById("bulb");
+        
+        function lightOn(){
+            lightBulb.setAttribute("src","on.gif");
+        }
+
+        function lightOff(){
+            lightBulb.setAttribute("src", "off.gif");
+        }
+
+        function toggleSwitch(){
+            if(lightBulb.getAttribute("src") == "on.gif"){
+                lightOff();
+            }else{
+                lightOn();
+            }
+        }
+
+        //Motion Detect Light Area (auto ON &  OFF)
+        document.querySelector(".detectedArea").addEventListener("mouseenter",()=>{
+            lightOn();
+            setTimeout(lightOff,3000); //3sec nay yin lightOFF twr mhr
+        })
+
+    </script>
+</body>
+</html>
